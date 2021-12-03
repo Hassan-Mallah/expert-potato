@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+from PyDictionary import PyDictionary
 
 
 # Create your views here.
@@ -9,5 +10,11 @@ def index(request):
 
 def word(request):
     search = request.GET.get('search')
-    print(search)
-    return render(request, 'word.html')
+    dict = PyDictionary()
+    meaning = dict.meaning(search)
+    sysnonms = dict.synonym(search)
+
+    print(meaning, sysnonms)
+
+    return HttpResponse(str(meaning))
+    # return render(request, 'word.html')
