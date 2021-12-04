@@ -12,9 +12,13 @@ def word(request):
     search = request.GET.get('search')
     dict = PyDictionary()
     meaning = dict.meaning(search)
-    sysnonms = dict.synonym(search)
+    synonyms = dict.synonym(search)
+    antonyms = dict.antonym(search)
+    context = {
+        'meaning': meaning,
+        'synonyms': synonyms,
+        'antonyms': antonyms
+    }
+    print(context)
 
-    print(meaning, sysnonms)
-
-    return HttpResponse(str(meaning))
-    # return render(request, 'word.html')
+    return render(request, 'word.html', context)
