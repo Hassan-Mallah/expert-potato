@@ -14,6 +14,8 @@ def word(request):
     meaning = dict.meaning(search)
     synonyms = dict.synonym(search)
     antonyms = dict.antonym(search)
+    if meaning and 'Noun' in meaning:
+        meaning = meaning['Noun'][0]
     context = {
         'meaning': meaning,
         'synonyms': synonyms,
