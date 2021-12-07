@@ -12,8 +12,13 @@ def word(request):
     search = request.GET.get('search')
     dict = PyDictionary()
     meaning = dict.meaning(search)
+
+    # todo: new dictionary library
+    # synonyms and antonyms are not available
     synonyms = dict.synonym(search)
     antonyms = dict.antonym(search)
+
+    # if there's meaning
     if meaning and 'Noun' in meaning:
         meaning = meaning['Noun'][0]
     context = {
